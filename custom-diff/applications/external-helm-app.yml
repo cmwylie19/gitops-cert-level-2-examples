@@ -6,10 +6,20 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /metadata
+  - group: v1
+    kind: Secret
+    jsonPointers:
+    - /data
+
   project: default
 
   source:
-    repoURL: https://github.com/codefresh-contrib/gitops-cert-level-2-examples.git
+    repoURL: https://github.com/cmwylie19/gitops-cert-level-2-examples.git
     targetRevision: HEAD
     path: ./custom-diff/02-external-app
    
